@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <form th:object="${department}" th:action="@{save}" method="POST">
+            Id       : <input type="text" th:field="*{id}" />
+            <br/>
+            Name     : <input type="text" th:field="*{name}" />
+            <br/>
+            <input type="submit" value="Save" name="Save" />
+            <input type="submit" value="Update" name="Update" />
+        </form>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Department ID</th>
+                    <th>Department Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="department : ${departments}">
+                    <td th:text="${department.id}"></td>
+                    <td th:text="${department.name}"></td>
+                    <td><a th:href="@{/department/delete/{id}(id=${department.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>
